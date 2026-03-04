@@ -7,28 +7,17 @@
 <style>
 body {
     margin: 0;
-    background: linear-gradient(to bottom, #eef2f3, #d9e4f5);
-    font-family: 'Times New Roman', Times, serif, sans-serif;
-    overflow: hidden;
+    background: #f2f4f8;
+    font-family: Arial, sans-serif;
+    overflow-x: auto;
 }
 
-/* Zoom container */
-#zoom-container {
-    width: 100vw;
-    height: 100vh;
-    overflow: auto;
-    cursor: grab;
-}
-
-/* Tree structure */
 .tree {
+    padding: 80px;
     display: inline-block;
-    padding: 100px;
-    transform-origin: 0 0;
-    transition: transform 0.3s ease;
 }
 
-/* Remove default list style */
+/* Remove default list styling */
 .tree ul {
     padding-top: 40px;
     position: relative;
@@ -40,28 +29,29 @@ body {
     list-style: none;
     text-align: center;
     position: relative;
-    padding: 20px 20px 0 20px;
+    padding: 20px 25px 0 25px;
 }
 
-/* CONNECTING LINES */
+/* Horizontal connectors */
 .tree li::before,
 .tree li::after {
     content: '';
     position: absolute;
     top: 0;
-    right: 50%;
-    border-top: 2px solid #555;
     width: 50%;
     height: 20px;
+    border-top: 2px solid #444;
+}
+
+.tree li::before {
+    right: 50%;
 }
 
 .tree li::after {
-    right: auto;
     left: 50%;
-    border-left: 2px solid #555;
+    border-left: 2px solid #444;
 }
 
-/* Remove lines if single child */
 .tree li:only-child::before,
 .tree li:only-child::after {
     display: none;
@@ -73,216 +63,143 @@ body {
     position: absolute;
     top: 0;
     left: 50%;
-    border-left: 2px solid #555;
     height: 40px;
+    border-left: 2px solid #444;
 }
 
-/* PERSON CARD */
+/* Person box */
 .person {
-    position: relative;
     display: inline-block;
-    padding: 15px;
-    border-radius: 15px;
     background: white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-}
-
-.person:hover {
-    transform: translateY(-5px);
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    min-width: 110px;
 }
 
 .person img {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .person h3 {
-    margin: 10px 0 0 0;
-    font-size: 16px;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+}
+
+.person a {
+    text-decoration: none;
     color: #333;
 }
 
-/* Hover popup */
-.popup {
-    visibility: hidden;
-    opacity: 0;
-    width: 200px;
-    background: #333;
-    color: white;
-    text-align: left;
-    border-radius: 8px;
-    padding: 10px;
-    position: absolute;
-    top: 110%;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: opacity 0.3s;
-    z-index: 10;
+.person:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
 }
 
-.person:hover .popup {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Animated lines */
-.tree li::before,
-.tree li::after,
-.tree ul ul::before {
-    animation: growLine 1s ease forwards;
-}
-
-@keyframes growLine {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Zoom buttons */
-.controls {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-}
-
-.controls button {
-    padding: 10px;
-    margin: 5px;
-    font-size: 18px;
-    cursor: pointer;
+/* Couple container */
+.couple {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="controls">
-    <button onclick="zoomIn()">+</button>
-    <button onclick="zoomOut()">−</button>
-</div>
-
-<div id="zoom-container">
-<div class="tree" id="tree">
-
+<div class="tree">
 <ul>
-    <li>
-        <div class="person">
-            <a href="person1.html">
-                <img src="images/Jinx.png">
-                <h3>Great Grandparent</h3>
-            </a>
-            <div class="popup">
-                Born: 1920<br>
-                Country: Italy<br>
-                Click for full story
+
+<!-- GENERATION 1 (8 people / 4 couples) -->
+<li>
+    <div class="couple">
+        <div class="person"><a href="#"><img src="images/p1.jpg"><h3>G1-A</h3></a></div>
+        <div class="person"><a href="#"><img src="images/p2.jpg"><h3>G1-B</h3></a></div>
+    </div>
+
+    <ul>
+        <li>
+            <div class="couple">
+                <div class="person"><a href="#"><img src="images/p3.jpg"><h3>G2-A</h3></a></div>
+                <div class="person"><a href="#"><img src="images/p4.jpg"><h3>G2-B</h3></a></div>
             </div>
-        </div>
 
-        <ul>
-            <li>
-                <div class="person">
-                    <a href="person2.html">
-                        <img src="images/person2.jpg">
-                        <h3>Sibling 1</h3>
-                    </a>
-                    <div class="popup">
-                        Born: 1950<br>
-                        Loves farming<br>
-                        Click for more
+            <ul>
+                <li>
+                    <div class="couple">
+                        <div class="person"><a href="#"><img src="images/p5.jpg"><h3>G3-A</h3></a></div>
+                        <div class="person"><a href="#"><img src="images/p6.jpg"><h3>G3-B</h3></a></div>
                     </div>
-                </div>
 
-                <div class="person">
-                    <a href="person2.html">
-                        <img src="images/person2.jpg">
-                        <h3>Sibling 2</h3>
-                    </a>
-                    <div class="popup">
-                        Born: 1950<br>
-                        Loves farming<br>
-                        Click for more
-                    </div>
-                </div>
+                    <ul>
 
+                        <!-- GENERATION 4 -->
+                        <li>
+                            <div class="person"><a href="#"><img src="images/p7.jpg"><h3>G4-Left</h3></a></div>
+                        </li>
 
-                <ul>
-                    <li>
-                        <div class="person">
-                            <a href="person3.html">
-                                <img src="images/person3.jpg">
-                                <h3>Parent</h3>
-                            </a>
-                            <div class="popup">
-                                Born: 1980<br>
-                                Engineer<br>
-                                Click for more
+                        <li>
+                            <div class="couple">
+                                <div class="person"><a href="#"><img src="images/p8.jpg"><h3>G4-MidA</h3></a></div>
+                                <div class="person"><a href="#"><img src="images/p9.jpg"><h3>G4-MidB</h3></a></div>
                             </div>
-                        </div>
 
-                        <ul>
-                            <li>
-                                <div class="person">
-                                    <a href="Valerie.html">
-                                        <img src="images/Homer.png">
-                                        <h3>Valerie</h3>
-                                    </a>
-                                    <div class="popup">
-                                        Born: 1977<br>
-                                        Best Mom Ever<br>
-                                        Click for more
+                            <ul>
+
+                                <!-- GENERATION 5 -->
+                                <li>
+                                    <div class="couple">
+                                        <div class="person"><a href="#"><img src="images/p10.jpg"><h3>G5-LeftA</h3></a></div>
+                                        <div class="person"><a href="#"><img src="images/p11.jpg"><h3>G5-LeftB</h3></a></div>
                                     </div>
-                                </div>
 
-                                <!-- Continue nesting for 6 generations -->
+                                    <ul>
+                                        <li><div class="person"><a href="#"><img src="images/p20.jpg"><h3>Child 1</h3></a></div></li>
+                                        <li><div class="person"><a href="#"><img src="images/p21.jpg"><h3>Child 2</h3></a></div></li>
+                                    </ul>
+                                </li>
 
-                            </li>
-                        </ul>
-
-                        <ul>
-                            <li>
-                                <div class="person">
-                                    <a href="Mia.html">
-                                        <img src="images/Homer.png">
-                                        <h3>Mia</h3>
-                                    </a>
-                                    <div class="popup">
-                                        Born: 2005<br>
-                                        Future legend<br>
-                                        Click for more
+                                <li>
+                                    <div class="couple">
+                                        <div class="person"><a href="#"><img src="images/p12.jpg"><h3>G5-MidA</h3></a></div>
+                                        <div class="person"><a href="#"><img src="images/p13.jpg"><h3>G5-MidB</h3></a></div>
                                     </div>
-                                </div>
 
-                                <!-- Continue nesting for 6 generations -->
+                                    <ul>
+                                        <li><div class="person"><a href="#"><img src="images/p22.jpg"><h3>Child 3</h3></a></div></li>
+                                        <li><div class="person"><a href="#"><img src="images/p23.jpg"><h3>Child 4</h3></a></div></li>
+                                        <li><div class="person"><a href="#"><img src="images/p24.jpg"><h3>Child 5</h3></a></div></li>
+                                    </ul>
+                                </li>
 
-                            </li>
-                        </ul>
+                                <li>
+                                    <div class="person"><a href="#"><img src="images/p14.jpg"><h3>G5-Right</h3></a></div>
 
-                    </li>
-                </ul>
-            </li>
-        </ul>
+                                    <ul>
+                                        <li><div class="person"><a href="#"><img src="images/p25.jpg"><h3>Child 6</h3></a></div></li>
+                                        <li><div class="person"><a href="#"><img src="images/p26.jpg"><h3>Child 7</h3></a></div></li>
+                                    </ul>
+                                </li>
 
-    </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <div class="person"><a href="#"><img src="images/p15.jpg"><h3>G4-Right</h3></a></div>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</li>
+
 </ul>
-
 </div>
-</div>
-
-<script>
-let scale = 1;
-
-function zoomIn() {
-    scale += 0.1;
-    document.getElementById("tree").style.transform = "scale(" + scale + ")";
-}
-
-function zoomOut() {
-    scale -= 0.1;
-    document.getElementById("tree").style.transform = "scale(" + scale + ")";
-}
-</script>
 
 </body>
 </html>
