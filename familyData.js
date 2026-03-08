@@ -72,7 +72,7 @@ const family =
       {
           name: "Mike",
           gender: "female",
-          image: "images/p5.jpg",
+          image: "mike.png",
           info: "Born 1990",
             spouse: {
             name: "Yuko",
