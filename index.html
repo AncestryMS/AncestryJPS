@@ -2,204 +2,350 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Family Tree</title>
+<title>Royal Family Tree</title>
 
 <style>
 body {
-    margin: 0;
-    background: #f2f4f8;
-    font-family: Arial, sans-serif;
-    overflow-x: auto;
+  margin: 0;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  font-family: "Georgia", serif;
+  overflow: hidden;
+  color: gold;
 }
 
-.tree {
-    padding: 80px;
-    display: inline-block;
+#viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: grab;
+  position: relative;
 }
 
-/* Remove default list styling */
-.tree ul {
-    padding-top: 40px;
-    position: relative;
-    display: flex;
-    justify-content: center;
+#tree {
+  position: absolute;
+  transform-origin: 0 0;
 }
 
-.tree li {
-    list-style: none;
-    text-align: center;
-    position: relative;
-    padding: 20px 25px 0 25px;
+/* Tree layout */
+ul {
+  padding-top: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-/* Horizontal connectors */
-.tree li::before,
-.tree li::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 20px;
-    border-top: 2px solid #444;
+li {
+  list-style: none;
+  text-align: center;
+  position: relative;
+  padding: 20px 30px;
 }
 
-.tree li::before {
-    right: 50%;
+/* Gold connectors */
+/* ========================= */
+/* GOLD BLOODLINE CONNECTORS */
+/* ========================= */
+
+ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 50px;
+  border-left: 3px solid gold;
 }
 
-.tree li::after {
-    left: 50%;
-    border-left: 2px solid #444;
+/* Horizontal sibling connectors (gold) */
+li::before, li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 30px;
+  border-top: 3px solid gold;
 }
 
-.tree li:only-child::before,
-.tree li:only-child::after {
-    display: none;
+li::before { right: 50%; }
+li::after {
+  left: 50%;
+  border-left: 3px solid gold;
 }
 
-/* Vertical line */
-.tree ul ul::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    height: 40px;
-    border-left: 2px solid #444;
+li:only-child::before,
+li:only-child::after {
+  display: none;
 }
 
-/* Person box */
+/* ========================= */
+/* SILVER MARRIAGE CONNECTOR */
+/* ========================= */
+
+.couple {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  position: relative;
+}
+
+.couple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 60px;
+  height: 3px;
+  background: silver;
+  box-shadow: 0 0 8px silver;
+}
+
+/* ========================= */
+/* PERSON STYLES */
+/* ========================= */
+
+.bloodline {
+  border: 3px solid gold;
+  box-shadow: 0 0 25px gold;
+}
+
+.married-in {
+  border: 2px solid silver;
+  box-shadow: 0 0 10px rgba(200,200,200,0.6);
+  opacity: 0.9;
+}
+
+.mother h3 {
+  color: gold;
+}
+
+/* Make hover popup appear above everything */
 .person {
-    display: inline-block;
-    background: white;
-    padding: 12px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    min-width: 110px;
-}
-
-.person img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.person h3 {
-    margin: 8px 0 0 0;
-    font-size: 14px;
-}
-
-.person a {
-    text-decoration: none;
-    color: #333;
+  position: relative;
+  z-index: 2;
 }
 
 .person:hover {
-    transform: translateY(-5px);
-    transition: 0.3s;
+  z-index: 999;
+}
+
+.popup {
+  z-index: 1000;
+}
+
+/* Person Card */
+.person {
+  background: linear-gradient(145deg, #2c2c2c, #111);
+  border: 2px solid gold;
+  border-radius: 15px;
+  padding: 15px;
+  width: 150px;
+  box-shadow: 0 0 15px rgba(255,215,0,0.3);
+  position: relative;
+  transition: 0.3s;
+}
+
+.bloodline {
+  box-shadow: 0 0 25px gold;
+  border: 3px solid gold;
+}
+
+.married-in {
+  opacity: 0.85;
+  border: 2px solid #aa8800;
+  box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+/* Marriage connector */
+.couple {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: relative;
+}
+
+.couple::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 2px;
+  background: gold;
+}
+
+.person {
+  position: relative;
+  z-index: 2;
+}
+
+.person:hover {
+  z-index: 999; /* bring hovered card above everything */
+}
+
+.popup {
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  border: 1px solid gold;
+  padding: 10px;
+  font-size: 12px;
+  width: 170px;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+  z-index: 1000; /* ensure popup always on top */
+}
+
+.person:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px gold;
+}
+
+.person img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid gold;
+}
+
+.person h3 {
+  margin: 10px 0 0;
+  font-size: 15px;
+}
+
+/* Crown icon for mother */
+.mother::after {
+  content: " 👑";
+  color: gold;
+}
+
+/* Hover popup */
+.popup {
+  position: absolute;
+  bottom: -110px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  border: 1px solid gold;
+  padding: 8px;
+  font-size: 12px;
+  width: 160px;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.person:hover .popup {
+  opacity: 1;
 }
 
 /* Couple container */
 .couple {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
 }
 </style>
 </head>
 
 <body>
 
-<div class="tree">
-<ul>
-
-<!-- GENERATION 1 (8 people / 4 couples) -->
-<li>
-    <div class="couple">
-        <div class="person"><a href="#"><img src="images/p1.jpg"><h3>G1-A</h3></a></div>
-        <div class="person"><a href="#"><img src="images/p2.jpg"><h3>G1-B</h3></a></div>
-    </div>
-
-    <ul>
-        <li>
-            <div class="couple">
-                <div class="person"><a href="#"><img src="images/p3.jpg"><h3>G2-A</h3></a></div>
-                <div class="person"><a href="#"><img src="images/p4.jpg"><h3>G2-B</h3></a></div>
-            </div>
-
-            <ul>
-                <li>
-                    <div class="couple">
-                        <div class="person"><a href="#"><img src="images/p5.jpg"><h3>G3-A</h3></a></div>
-                        <div class="person"><a href="#"><img src="images/p6.jpg"><h3>G3-B</h3></a></div>
-                    </div>
-
-                    <ul>
-
-                        <!-- GENERATION 4 -->
-                        <li>
-                            <div class="person"><a href="#"><img src="images/p7.jpg"><h3>G4-Left</h3></a></div>
-                        </li>
-
-                        <li>
-                            <div class="couple">
-                                <div class="person"><a href="#"><img src="images/p8.jpg"><h3>G4-MidA</h3></a></div>
-                                <div class="person"><a href="#"><img src="images/p9.jpg"><h3>G4-MidB</h3></a></div>
-                            </div>
-
-                            <ul>
-
-                                <!-- GENERATION 5 -->
-                                <li>
-                                    <div class="couple">
-                                        <div class="person"><a href="#"><img src="images/p10.jpg"><h3>G5-LeftA</h3></a></div>
-                                        <div class="person"><a href="#"><img src="images/p11.jpg"><h3>G5-LeftB</h3></a></div>
-                                    </div>
-
-                                    <ul>
-                                        <li><div class="person"><a href="#"><img src="images/p20.jpg"><h3>Child 1</h3></a></div></li>
-                                        <li><div class="person"><a href="#"><img src="images/p21.jpg"><h3>Child 2</h3></a></div></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <div class="couple">
-                                        <div class="person"><a href="#"><img src="images/p12.jpg"><h3>G5-MidA</h3></a></div>
-                                        <div class="person"><a href="#"><img src="images/p13.jpg"><h3>G5-MidB</h3></a></div>
-                                    </div>
-
-                                    <ul>
-                                        <li><div class="person"><a href="#"><img src="images/p22.jpg"><h3>Child 3</h3></a></div></li>
-                                        <li><div class="person"><a href="#"><img src="images/p23.jpg"><h3>Child 4</h3></a></div></li>
-                                        <li><div class="person"><a href="#"><img src="images/p24.jpg"><h3>Child 5</h3></a></div></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <div class="person"><a href="#"><img src="images/p14.jpg"><h3>G5-Right</h3></a></div>
-
-                                    <ul>
-                                        <li><div class="person"><a href="#"><img src="images/p25.jpg"><h3>Child 6</h3></a></div></li>
-                                        <li><div class="person"><a href="#"><img src="images/p26.jpg"><h3>Child 7</h3></a></div></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li>
-                            <div class="person"><a href="#"><img src="images/p15.jpg"><h3>G4-Right</h3></a></div>
-                        </li>
-
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</li>
-
-</ul>
+<div id="viewport">
+  <div id="tree"></div>
 </div>
+
+<script src="familyData.js"></script>
+
+<script>
+function createPerson(person, isMother=false, isBloodline=true) {
+  const div = document.createElement("div");
+
+  div.className = "person";
+
+  if (isMother) div.classList.add("mother");
+  if (isBloodline) div.classList.add("bloodline");
+  else div.classList.add("married-in");
+
+  let icon = "";
+  if (!isBloodline) icon = " 💍";   // ring for married in
+  if (isMother) icon += " 👑";      // crown for mother line
+
+  div.innerHTML = `
+    <img src="${person.image}">
+    <h3>${person.name}${icon}</h3>
+    <div class="popup">${person.info}<br>Click for full story</div>
+  `;
+
+  div.onclick = () => {
+    window.location.href = person.name.replace(/\s/g,'') + ".html";
+  };
+
+  return div;
+}
+
+function buildTree(person) {
+  const li = document.createElement("li");
+
+  const coupleDiv = document.createElement("div");
+  coupleDiv.className = "couple";
+
+  const mother = person.gender === "female";
+
+  coupleDiv.appendChild(createPerson(person, mother, true)); // bloodline
+  if (person.spouse) {
+coupleDiv.appendChild(createPerson(person.spouse, person.spouse.gender === "female", false)); // married in
+  }
+
+  li.appendChild(coupleDiv);
+
+  if (person.children && person.children.length > 0) {
+    const ul = document.createElement("ul");
+    person.children.forEach(child => {
+      ul.appendChild(buildTree(child));
+    });
+    li.appendChild(ul);
+  }
+
+  return li;
+}
+
+const rootUl = document.createElement("ul");
+rootUl.appendChild(buildTree(family));
+document.getElementById("tree").appendChild(rootUl);
+
+/* Zoom + Drag */
+let scale = 1;
+let isDragging = false;
+let startX, startY;
+let offsetX = 0, offsetY = 0;
+
+const tree = document.getElementById("tree");
+const viewport = document.getElementById("viewport");
+
+viewport.addEventListener("wheel", e => {
+  e.preventDefault();
+  scale += e.deltaY * -0.001;
+  scale = Math.min(Math.max(.5, scale), 2);
+  tree.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+});
+
+viewport.addEventListener("mousedown", e => {
+  isDragging = true;
+  startX = e.clientX - offsetX;
+  startY = e.clientY - offsetY;
+});
+
+viewport.addEventListener("mouseup", () => isDragging = false);
+
+viewport.addEventListener("mousemove", e => {
+  if (!isDragging) return;
+  offsetX = e.clientX - startX;
+  offsetY = e.clientY - startY;
+  tree.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+});
+
+
+</script>
 
 </body>
 </html>
