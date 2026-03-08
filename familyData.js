@@ -80,6 +80,22 @@ const family =
             image: "images/p2.jpg",
             info: "Born 1938 • Military leader"
           },
+          children: [
+            {
+              name: "Cody",
+              gender: "female",
+              image: "images/p5.jpg",
+              info: "Born 1990",
+              children: []
+            },
+                      {
+              name: "Sophie",
+              gender: "female",
+              image: "images/p5.jpg",
+              info: "Born 1990",
+              children: []
+            }
+          ]
           
         }, 
               {
