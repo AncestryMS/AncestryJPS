@@ -103,7 +103,7 @@ const family =
           name: "Sue",
           gender: "female",
           image: "Images/sue.jpg",
-          info: "Born 1951-2009",
+          info: " 1951-2009",
           children: []
         },
 {
