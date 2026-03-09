@@ -6,54 +6,38 @@ const family =
   name: "Frances",
   gender: "female",
   image: "Images/frances.jpeg",
-  info: "Born 1940 • Founder of the dynasty",
+  info: "1874-1961",
   spouse: {
     name: "Michael",
     gender: "male",
     image: "Images/michael.jpeg",
-    info: "Born 1938 • Military leader"
+    info: "1872-1935 "
   },
   children: [
     {
       name: "Clara",
       gender: "female",
       image: "Images/clara.jpeg",
-      info: "Born 1965",
+      info: "1895-1977",
       spouse: {
         name: "Stanley",
         gender: "male",
         image: "Images/stanley.jpeg",
-        info: "Architect"
+        info: "1887-1983"
       },
       
 
       children: [
-
-        
-        {
-          name: "Chester",
-          gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
-          children: []
-        },
-        {
-          name: "Dorothy",
-          gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
-          children: []
-        },
         {
           name: "Wanda",
           gender: "female",
           image: "Images/Wanda.jpg",
-          info: "Born 1921",
+          info: "1921-2016",
           spouse: {
-            name: "Vladislav",
+            name: "V.J. (Laddie)",
             gender: "male",
             image: "Images/pop.jpg",
-            info: "Born 1912"
+            info: "1912-2001"
           },          
           children: [    
           {
@@ -65,7 +49,7 @@ const family =
             name: "Bill",
             gender: "male",
             image: "Images/Bill.png",
-            info: "Born 1947" },
+            info: "1947-2021" },
           children: [      {
           name: "Valerie",
           gender: "female",
@@ -119,24 +103,17 @@ const family =
           name: "Sue",
           gender: "female",
           image: "Images/sue.jpg",
-          info: "Born 1951",
+          info: "Born 1951-2009",
           children: []
         },
 {
           name: "Dan",
           gender: "female",
-          image: "Images/dan.jpg",
+          image: "Images/dan.jpeg",
           info: "Born 1957",
           children: []
         }]
-        },
-        {
-          name: "Stanley Jr.",
-          gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
-          children: []
-        },               
+        }              
       ]
       
     }
