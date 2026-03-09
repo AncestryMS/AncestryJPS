@@ -2,8 +2,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Royal Family Tree</title>
-
+<h1 style="text-align:center; text-decoration:underline;">My Family Tree</h1>
+<h4 style="text-align:center;">Six Generations of Mothers</h4>
 <style>
 body {
   margin: 0;
@@ -213,11 +213,6 @@ li:only-child::after {
   font-size: 15px;
 }
 
-/* Crown icon for mother */
-.mother::after {
-  content: " 👑";
-  color: gold;
-}
 
 /* Hover popup */
 .popup {
@@ -245,10 +240,49 @@ li:only-child::after {
   gap: 15px;
   justify-content: center;
 }
+
+/* Zoom Controls */
+#zoom-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10000;
+}
+
+.zoom-btn {
+  background: linear-gradient(145deg, #2c2c2c, #111);
+  border: 2px solid gold;
+  color: gold;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+.zoom-btn:hover {
+  background: linear-gradient(145deg, #3c3c3c, #222);
+  box-shadow: 0 0 15px gold;
+  transform: scale(1.05);
+}
+
+.zoom-btn:active {
+  transform: scale(0.95);
+}
 </style>
 </head>
 
 <body>
+
+<div id="zoom-controls">
+  <button class="zoom-btn" id="zoom-in">+</button>
+  <button class="zoom-btn" id="zoom-out">−</button>
+  <button class="zoom-btn" id="zoom-reset">Reset</button>
+</div>
 
 <div id="viewport">
   <div id="tree"></div>
@@ -277,7 +311,7 @@ function createPerson(person, isMother=false, isBloodline=true) {
   `;
 
   div.onclick = () => {
-    window.location.href = person.name.replace(/\s/g,'') + ".html";
+window.location.href = "People/" + person.name.replace(/\s/g,'') + ".html";
   };
 
   return div;
@@ -341,6 +375,46 @@ viewport.addEventListener("mousemove", e => {
   if (!isDragging) return;
   offsetX = e.clientX - startX;
   offsetY = e.clientY - startY;
+  tree.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+});
+
+/* Zoom Button Controls */
+document.getElementById("zoom-in").addEventListener("click", () => {
+  scale = Math.min(scale + 0.2, 2);
+  tree.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+});
+
+document.getElementById("zoom-out").addEventListener("click", () => {
+  scale = Math.max(scale - 0.2, 0.5);
+  tree.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+});
+
+document.getElementById("zoom-reset").addEventListener("click", () => {
+  scale = 1;
+  
+  // Find Joan element
+  const allPeople = tree.querySelectorAll(".person h3");
+  let joanElement = null;
+  for (let el of allPeople) {
+    if (el.textContent.includes("Joan")) {
+      joanElement = el.closest(".person");
+      break;
+    }
+  }
+  
+  if (joanElement) {
+    // Get Joan's position relative to the tree
+    const joanRect = joanElement.getBoundingClientRect();
+    const treeRect = tree.getBoundingClientRect();
+    
+    // Calculate center offset to put Joan in the middle of the viewport
+    offsetX = (viewport.clientWidth / 2) - (joanRect.left - treeRect.left + joanRect.width / 2);
+    offsetY = (viewport.clientHeight / 2) - (joanRect.top - treeRect.top + joanRect.height / 2);
+  } else {
+    offsetX = 0;
+    offsetY = 0;
+  }
+  
   tree.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
 });
 

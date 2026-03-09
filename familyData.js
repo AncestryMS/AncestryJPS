@@ -3,31 +3,47 @@
 const family = 
 
 {
-  name: "Anna's mother",
+  name: "Frances",
   gender: "female",
-  image: "Images/p1.jpg",
+  image: "Images/frances.jpeg",
   info: "Born 1940 • Founder of the dynasty",
   spouse: {
-    name: "Anna's father",
+    name: "Michael",
     gender: "male",
-    image: "Images/p2.jpg",
+    image: "Images/michael.jpeg",
     info: "Born 1938 • Military leader"
   },
   children: [
     {
-      name: "Anna",
+      name: "Clara",
       gender: "female",
-      image: "Images/p3.jpg",
+      image: "Images/clara.jpeg",
       info: "Born 1965",
       spouse: {
-        name: "Carlos",
+        name: "Stanley",
         gender: "male",
-        image: "Images/p4.jpg",
+        image: "Images/stanley.jpeg",
         info: "Architect"
       },
       
 
       children: [
+
+        
+        {
+          name: "Chester",
+          gender: "female",
+          image: "Images/p5.jpg",
+          info: "Born 1990",
+          children: []
+        },
+        {
+          name: "Dorothy",
+          gender: "female",
+          image: "Images/p5.jpg",
+          info: "Born 1990",
+          children: []
+        },
         {
           name: "Wanda",
           gender: "female",
@@ -78,7 +94,7 @@ const family =
             name: "Yuko",
             gender: "male",
             image: "Images/yuko.jpg",
-            info: "Born 1970 • Military leader"
+            info: "Born 1970"
           },
           children: [
           ]
@@ -93,7 +109,7 @@ const family =
             name: "Mary",
             gender: "male",
             image: "Images/mary.jpg",
-            info: "Born 1982 • Military leader"
+            info: "Born 1982"
           },
           children: []
         }     
@@ -102,34 +118,20 @@ const family =
       {
           name: "Sue",
           gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
+          image: "Images/sue.jpg",
+          info: "Born 1951",
           children: []
         },
 {
           name: "Dan",
           gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
+          image: "Images/dan.jpg",
+          info: "Born 1957",
           children: []
         }]
         },
         {
-          name: "bob",
-          gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
-          children: []
-        },
-        {
-          name: "Randy",
-          gender: "female",
-          image: "Images/p5.jpg",
-          info: "Born 1990",
-          children: []
-        },
-        {
-          name: "Wanda",
+          name: "Stanley Jr.",
           gender: "female",
           image: "Images/p5.jpg",
           info: "Born 1990",
@@ -137,18 +139,6 @@ const family =
         },               
       ]
       
-    },
-    {
-        name: "John",
-        gender: "male",
-        image: "Images/p6.jpg",
-        info: "Born 1970",
-        spouse: {
-          name: "Sarah",
-          gender: "female",
-          image: "Images/p7.jpg",
-          info: "Born 1972"
-        }
-      }
+    }
   ]
 };
