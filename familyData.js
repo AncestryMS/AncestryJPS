@@ -44,7 +44,7 @@ const family =
           name: "joan",
           gender: "female",
           image: "Images/joan.png",
-          info: "Born 1949",
+          info: "Born 1949, Please change url to joan (not Joan) to see her page.",
             spouse: {
             name: "Bill",
             gender: "male",
@@ -110,7 +110,7 @@ const family =
           name: "Dan",
           gender: "female",
           image: "Images/dan.jpeg",
-          info: "Born 1957",
+          info: "Born 1957, Please change url to joan (not Joan) to see her page.",
           children: []
         }]
         }              
