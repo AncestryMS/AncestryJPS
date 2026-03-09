@@ -41,7 +41,7 @@ const family =
           },          
           children: [    
           {
-          name: "Joan",
+          name: "joan",
           gender: "female",
           image: "Images/joan.png",
           info: "Born 1949",
