@@ -32,40 +32,40 @@ const family =
           name: "Wanda",
           gender: "female",
           image: "images/Wanda.jpg",
-          info: "Born 1990",
+          info: "Born 1921",
           spouse: {
-            name: "Carlos",
+            name: "Vladislav",
             gender: "male",
-            image: "images/p4.jpg",
-            info: "Architect"
+            image: "images/pop.jpg",
+            info: "Born 1912"
           },          
           children: [    
           {
           name: "Joan",
           gender: "female",
           image: "images/Joan.png",
-          info: "Born 1990",
+          info: "Born 1949",
             spouse: {
             name: "Bill",
             gender: "male",
             image: "images/Bill.png",
-            info: "Architect" },
+            info: "Born 1947" },
           children: [      {
           name: "Valerie",
           gender: "female",
           image: "images/Valerie.jpg",
-          info: "Born 1990",
+          info: "Born 1977",
           children: [      {
               name: "Mia",
               gender: "female",
               image: "images/Mia.png",
-              info: "Born 1990",
+              info: "Born 2005",
               children: []
             },       {
               name: "Ben",
               gender: "female",
               image: "images/ben.png",
-              info: "Born 1990",
+              info: "Born 2020",
               children: []
             }]
         },
@@ -73,12 +73,12 @@ const family =
           name: "Mike",
           gender: "female",
           image: "images/mike.png",
-          info: "Born 1990",
+          info: "Born 1979",
             spouse: {
             name: "Yuko",
             gender: "male",
             image: "images/yuko.jpg",
-            info: "Born 1938 • Military leader"
+            info: "Born 1970 • Military leader"
           },
           children: [
           ]
@@ -88,12 +88,12 @@ const family =
           name: "Peter",
           gender: "female",
           image: "images/pete.jpg",
-          info: "Born 1990",
+          info: "Born 1982",
             spouse: {
             name: "Mary",
             gender: "male",
             image: "images/mary.jpg",
-            info: "Born 1938 • Military leader"
+            info: "Born 1982 • Military leader"
           },
           children: []
         }     
